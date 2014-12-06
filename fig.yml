@@ -1,0 +1,7 @@
+svcdir:
+  build: .
+  environment:
+   - PAZ_SERVICE_DIRECTORY_PORT=9001
+  ports:
+   - "9001:9001"
+

@@ -1,0 +1,44 @@
+{
+  "name": "paz-service-directory",
+  "version": "0.0.1",
+  "description": "A catalog of services with versioned config for running as Docker containers with systemd",
+  "main": "server.js",
+  "scripts": {
+    "lint": "eslint .",
+    "codestyle": "jscs -p google bin/ lib/ middleware/ resources/ server.js",
+    "test": "fig up -d && sleep 5 && lab && fig stop",
+    "docs": "mkdir -p docs/generated && aglio -i docs/api-blueprint.md -o docs/generated/index.html",
+    "docs-server": "st -p 9002 -d docs/generated -i index.html"
+  },
+  "keywords": [
+    "paas",
+    "paz",
+    "fleet"
+  ],
+  "author": "Luke Bond <luke@yld.io>",
+  "dependencies": {
+    "argh": "^0.1.1",
+    "bunyan": "^0.22.3",
+    "error-plus": "0.0.1",
+    "ini": "^1.1.0",
+    "joi": "^4.0.0",
+    "leveldown": "^0.10.2",
+    "levelup": "^0.18.2",
+    "restify": "^2.7.0"
+  },
+  "devDependencies": {
+    "aglio": "^1.14.0",
+    "expectations": "^0.2.5",
+    "json-override": "^0.1.2",
+    "lab": "^4.4.4",
+    "mocha": "^1.18.2",
+    "precommit-hook": "^1.0.7",
+    "st": "^0.5.1",
+    "supertest": "^0.12.0"
+  },
+  "precommit": [
+    "lint",
+    "codestyle"
+  ],
+  "license": "ISC"
+}

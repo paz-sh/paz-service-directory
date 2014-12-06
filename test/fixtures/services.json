@@ -1,0 +1,18 @@
+{
+  "my-service": {
+    "name": "my-service",
+    "description": "Test service",
+    "dockerRepository": "lukebond/my-service",
+    "publicFacing": true,
+    "ports": [
+      {
+        "container": 9000,
+        "host": 80
+      }
+    ],
+    "env": {
+      "suchKey": "veryValue"
+    },
+    "numInstances": 1
+  }
+}
