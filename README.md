@@ -1,4 +1,4 @@
-# paz-service-directory
+# paz-service-directory 
 
 A directory of the services that can be run on the paz platform, along with their config. Produces systemd unit files for running on a CoreOS cluster with fleet.
 
