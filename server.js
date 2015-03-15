@@ -28,7 +28,7 @@ var opts = {
   'dbname': argh.argv.dbname || process.env[APP_NAME + '_DBNAME']  || 'db'
 };
 
-var dbPath = './' + opts.dbname;
+var dbPath = opts.dbname;
 opts.leveldb = {
   path: dbPath,
   db: levelup(dbPath, {
