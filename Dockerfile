@@ -1,4 +1,8 @@
-FROM node
+FROM library/alpine
+RUN apk update
+RUN apk add nodejs
+RUN apk add python
+RUN apk add make g++
 
 WORKDIR /usr/src/app
 
