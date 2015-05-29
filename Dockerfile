@@ -1,4 +1,4 @@
-FROM node
+FROM quay.io/yldio/paz-base
 
 WORKDIR /usr/src/app
 

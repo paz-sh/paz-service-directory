@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "codestyle": "jscs -p google bin/ lib/ middleware/ resources/ server.js",
-    "test": "fig up -d && sleep 5 && lab && fig stop",
+    "test": "docker-compose build && docker-compose up -d && sleep 3 && lab && docker-compose stop",
     "docs": "mkdir -p docs/generated && aglio -i docs/api-blueprint.md -o docs/generated/index.html",
     "docs-server": "st -p 9002 -d docs/generated -i index.html"
   },
@@ -28,7 +28,9 @@
   },
   "devDependencies": {
     "aglio": "^1.14.0",
+    "eslint": "^0.21.2",
     "expectations": "^0.2.5",
+    "jscs": "^1.13.1",
     "json-override": "^0.1.2",
     "lab": "^4.4.4",
     "mocha": "^1.18.2",
