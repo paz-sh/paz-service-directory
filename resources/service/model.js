@@ -43,8 +43,7 @@ module.exports = function Service(cfg) {
             statusCode: 404,
             message: err.message
           }));
-        }
-        else {
+        } else {
           return cb(new _Error(err, {
             statusCode: 500,
             message: err.message
@@ -64,21 +63,18 @@ module.exports = function Service(cfg) {
     if (params.dockerRepository) {
       // do lookup for service by dockerRepository
       db.get('dockerRepository!' + encodeURIComponent(params.dockerRepository),
-        function(err, serviceKey) {
-          if (err) {
-            if (err.notFound) {
-              return cb(new _Error(err, {statusCode: 404}));
+        function(latestErr, serviceKey) {
+          if (latestErr) {
+            if (latestErr.notFound) {
+              return cb(new _Error(latestErr, {statusCode: 404}));
+            } else {
+              return cb(new _Error(latestErr, {statusCode: 500}));
             }
-            else {
-              return cb(new _Error(err, {statusCode: 500}));
-            }
-          }
-          else {
+          } else {
             db.get(serviceKey, function(err, doc) {
               if (err && err.notFound) {
                 return cb(new _Error(err, {statusCode: 404}));
-              }
-              else if (err) {
+              } else if (err) {
                 return cb(new _Error(err, {statusCode: 500}));
               }
               return cb(null, {
@@ -87,8 +83,7 @@ module.exports = function Service(cfg) {
             });
           }
         });
-    }
-    else {
+    } else {
       db.createReadStream({
         start: 'service!',
         end: 'service!\xff'
@@ -109,8 +104,8 @@ module.exports = function Service(cfg) {
   };
 
   service.create = function(meta, object, cb) {
-    db.get('service!' + object.name, function(err) {
-      if (err && err.notFound) {
+    db.get('service!' + object.name, function(latestErr) {
+      if (latestErr && latestErr.notFound) {
         // only the base keys go in root of object, rest is config, gaps filled by pazDefaults
         var baseKeys = ['name', 'description', 'dockerRepository'];
         var doc = {};
@@ -156,15 +151,14 @@ module.exports = function Service(cfg) {
             doc: doc
           });
         });
-      } else if (err) {
+      } else if (latestErr) {
         return cb(new _Error(
           'Error putting resource',
           {
             statusCode: 500,
             uuid: meta.uuid
           }));
-      }
-      else {
+      } else {
         return cb(new _Error(
           'Error putting resource: a service by that name already exists',
           {
@@ -176,8 +170,8 @@ module.exports = function Service(cfg) {
   };
 
   service.modifyConfig = function(id, meta, object, cb) {
-    db.get('service!' + id, function(err, doc) {
-      if (err && err.notFound) {
+    db.get('service!' + id, function(latestErr, doc) {
+      if (latestErr && latestErr.notFound) {
         return cb(new _Error(
           'Cannot modify service config, a service by that name doesn\'t exist.',
           {
@@ -210,9 +204,9 @@ module.exports = function Service(cfg) {
 
   service.del = function(id, meta, cb) {
     var dbKey = 'service!' + id;
-    db.get(dbKey, function(err, doc) {
-      if (err) {
-        return cb(err.notFound ?
+    db.get(dbKey, function(latestErr, doc) {
+      if (latestErr) {
+        return cb(latestErr.notFound ?
             new _Error('Resource not found', {
               statusCode: 404,
               uuid: meta.uuid
@@ -258,8 +252,7 @@ module.exports = function Service(cfg) {
             statusCode: 404,
             message: err.message
           }));
-        }
-        else {
+        } else {
           return cb(new _Error(err, {
             statusCode: 500,
             message: err.message

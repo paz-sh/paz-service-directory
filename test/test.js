@@ -1,4 +1,4 @@
-  'use strict';
+'use strict';
 
 /* eslint-disable no-unused-expressions */
 
@@ -91,9 +91,9 @@ lab.experiment('Service Directory', function() {
       .send(service)
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .end(function(err) {
-        if (err) {
-          return done(err);
+      .end(function(latestErr) {
+        if (latestErr) {
+          return done(latestErr);
         }
 
         svcDir
@@ -126,9 +126,9 @@ lab.experiment('Service Directory', function() {
       .send(service)
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .end(function(err) {
-        if (err) {
-          return done(err);
+      .end(function(latestErr) {
+        if (latestErr) {
+          return done(latestErr);
         }
 
         // now fetch it
@@ -172,9 +172,9 @@ lab.experiment('Service Directory', function() {
       .send(service)
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .end(function(err) {
-        if (err) {
-          return done(err);
+      .end(function(latestErr) {
+        if (latestErr) {
+          return done(latestErr);
         }
 
         svcDir

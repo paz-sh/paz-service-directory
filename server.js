@@ -24,8 +24,8 @@ if (argh.argv.help || argh.argv.h) {
 var APP_NAME = pkgjson.name.toUpperCase().replace('-', '_');
 var opts = {
   'port': +(argh.argv.port || process.env[APP_NAME + '_PORT'] || '9001'),
-  'loglevel': argh.argv.loglevel || process.env[APP_NAME + '_LOGLEVEL']  || 'info',
-  'dbname': argh.argv.dbname || process.env[APP_NAME + '_DBNAME']  || 'db'
+  'loglevel': argh.argv.loglevel || process.env[APP_NAME + '_LOGLEVEL'] || 'info',
+  'dbname': argh.argv.dbname || process.env[APP_NAME + '_DBNAME'] || 'db'
 };
 
 var dbPath = opts.dbname;

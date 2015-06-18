@@ -6,8 +6,7 @@ module.exports = function(cfg) {
     service.validate(req.body, req._uuid, function(err) {
       if (err) {
         res.send(err.statusCode, err);
-      }
-      else {
+      } else {
         next();
       }
     });
@@ -17,8 +16,7 @@ module.exports = function(cfg) {
     service.validateConfigPatch(req.body, req._uuid, function(err) {
       if (err) {
         res.send(err.statusCode || 500, err);
-      }
-      else {
+      } else {
         next();
       }
     });
@@ -37,8 +35,7 @@ module.exports = function(cfg) {
         function(err, response) {
           if (err) {
             res.send(err.statusCode || 500, err.message);
-          }
-          else {
+          } else {
             res.send(response ? 200 : 404, response);
           }
         });
@@ -58,8 +55,7 @@ module.exports = function(cfg) {
         function(err, response) {
           if (err) {
             res.send(err.statusCode || 500, err.message);
-          }
-          else {
+          } else {
             res.send(200, response);
           }
         });
@@ -67,7 +63,7 @@ module.exports = function(cfg) {
 
   controller.create = function(req, res) {
     req.log.info({
-      'service.create':'*',
+      'service.create': '*',
       'uuid': req._uuid
     });
 
@@ -78,8 +74,7 @@ module.exports = function(cfg) {
     function(err, response) {
       if (err) {
         res.send(err.statusCode || 500, err.message);
-      }
-      else {
+      } else {
         res.send(201, response);
       }
     });
@@ -99,8 +94,7 @@ module.exports = function(cfg) {
     function(err, response) {
       if (err) {
         res.send(err.statusCode, err.message);
-      }
-      else {
+      } else {
         res.send(200, response);
       }
     });
@@ -118,8 +112,7 @@ module.exports = function(cfg) {
     function(err) {
       if (err) {
         res.send(err.statusCode, err.message);
-      }
-      else {
+      } else {
         res.send(204);
       }
     });
