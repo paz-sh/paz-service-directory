@@ -124,7 +124,8 @@ module.exports = function Service(cfg) {
           publicFacing: false,
           numInstances: 1,
           ports: [],
-          env: {}
+          env: {},
+          volume: {}
         };
 
         doc.config = override(defaults, object, true);
