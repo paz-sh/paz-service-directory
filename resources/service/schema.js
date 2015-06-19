@@ -11,6 +11,7 @@ var schema = {
       host: joi.number().integer()
     })),
   env: joi.object(),
+  volume: joi.object(),
   numInstances: joi.number().integer().min(1)
 };
 
@@ -22,6 +23,7 @@ module.exports = {
     publicFacing: schema.publicFacing,
     ports: schema.ports,
     env: schema.env,
+    volume: schema.volume,
     numInstances: schema.numInstances
   },
   patch: {
@@ -33,6 +35,7 @@ module.exports = {
     publicFacing: schema.publicFacing,
     ports: schema.ports,
     env: schema.env,
+    volume: schema.volume,
     numInstances: schema.numInstances
   }
 };
